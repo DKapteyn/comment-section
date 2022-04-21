@@ -1,26 +1,55 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { createContext, useEffect, useState } from "react";
+import { mainObjT, initT } from "./types";
+import LikeButton from "./components/LikeButton/LikeButton";
 
-function App() {
+export const MainObjContext = createContext({} as mainObjT);
+
+export default function App() {
+  const [init, setInit] = useState<initT>({} as initT);
+
+  useEffect(() => {
+    async function initialStateFetch() {
+      let response = await fetch("data.json");
+      let data = await response.json();
+      setInit(data);
+    }
+    initialStateFetch();
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <MainObjContext.Provider value={{ init, setInit }}>
+        <div>
+          {init.comments &&
+            init.comments.map((response, index) => {
+              return (
+                <div key={index}>
+                  <div>{response.user.username}</div>
+                  <div>{response.content}</div>
+                  <LikeButton
+                    score={response.score}
+                    index={index}
+                    id={response.id}
+                  />
+                  {response.replies &&
+                    response.replies.map((reply, replyIndex) => {
+                      return (
+                        <div key={reply.id}>
+                          <div key={reply.id}>{reply.content}</div>
+                          <LikeButton
+                            score={reply.score}
+                            replyIndex={replyIndex}
+                            index={index}
+                            id={response.id}
+                          />
+                        </div>
+                      );
+                    })}
+                </div>
+              );
+            })}
+        </div>
+      </MainObjContext.Provider>
+    </>
   );
 }
-
-export default App;
