@@ -1,6 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { mainObjT, initT } from "./types";
-import LikeButton from "./components/LikeButton/LikeButton";
+import FullComment from "./components/FullComment/FullComment";
 
 export const MainObjContext = createContext({} as mainObjT);
 
@@ -17,30 +17,34 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <div>
       <MainObjContext.Provider value={{ init, setInit }}>
         <div>
           {init.comments &&
             init.comments.map((response, index) => {
               return (
-                <div key={index}>
-                  <div>{response.user.username}</div>
-                  <div>{response.content}</div>
-                  <LikeButton
+                <div>
+                  <FullComment
+                    key={index}
+                    username={response.user.username}
+                    png={response.user.image.png}
+                    createdAt={response.createdAt}
+                    content={response.content}
                     score={response.score}
                     index={index}
-                    id={response.id}
                   />
                   {response.replies &&
                     response.replies.map((reply, replyIndex) => {
                       return (
-                        <div key={reply.id}>
-                          <div key={reply.id}>{reply.content}</div>
-                          <LikeButton
+                        <div key={replyIndex}>
+                          <FullComment
+                            username={reply.user.username}
+                            png={reply.user.image.png}
+                            createdAt={reply.createdAt}
+                            content={reply.content}
                             score={reply.score}
                             replyIndex={replyIndex}
                             index={index}
-                            id={response.id}
                           />
                         </div>
                       );
@@ -50,6 +54,6 @@ export default function App() {
             })}
         </div>
       </MainObjContext.Provider>
-    </>
+    </div>
   );
 }

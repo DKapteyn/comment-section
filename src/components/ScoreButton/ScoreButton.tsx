@@ -1,13 +1,12 @@
 import { useContext } from "react";
-import { LikeButtonT } from "../../types";
+import { ScoreButtonT } from "../../types";
 import { MainObjContext } from "../../App";
 
-export default function LikeButton({
+export default function ScoreButton({
   score,
-
   index,
   replyIndex,
-}: LikeButtonT) {
+}: ScoreButtonT) {
   let { setInit, init } = useContext(MainObjContext);
 
   function MoveScoreUp(): void {
@@ -37,7 +36,7 @@ export default function LikeButton({
       <div className="h-full flex items-center" onClick={() => MoveScoreUp()}>
         <img src="/images/icon-plus.svg" alt="plus" />
       </div>
-      <div>{score}</div>
+      <div className="text-mainPurple headingMedium">{score}</div>
       <div className="h-full flex items-center" onClick={() => MoveScoreDown()}>
         <img src="/images/icon-minus.svg" alt="minus" />
       </div>

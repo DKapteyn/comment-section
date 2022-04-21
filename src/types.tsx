@@ -1,8 +1,7 @@
-export type LikeButtonT = {
+export type ScoreButtonT = {
   score: number;
   index: number;
   replyIndex?: number;
-  id: number;
 };
 
 export type responseT = {
@@ -21,18 +20,31 @@ export type replyT = {
 
 export type initT = {
   comments: {
-    user: { username: string };
-    content: string;
-    score: number;
     id: number;
+    content: string;
+    createdAt: string;
+    score: number;
+    user: {
+      image: {
+        png: string;
+      };
+      username: string;
+    };
     replies: {
-      user: { username: string };
-      content: string;
-      score: number;
       id: number;
+      content: string;
+      createdAt: string;
+      score: number;
+      user: {
+        image: {
+          png: string;
+        };
+        username: string;
+      };
     }[];
   }[];
 };
+
 export type setInitT = {
   setInit: React.Dispatch<React.SetStateAction<initT>>;
 };
@@ -40,4 +52,20 @@ export type setInitT = {
 export type mainObjT = {
   init: initT;
   setInit: React.Dispatch<React.SetStateAction<initT>>;
+};
+
+export type userInfoT = {
+  png: string;
+  createdAt: string;
+  username: string;
+};
+
+export type FullCommentT = {
+  content: string;
+  createdAt: string;
+  score: number;
+  png: string;
+  username: string;
+  index: number;
+  replyIndex?: number;
 };
