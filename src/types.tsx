@@ -19,6 +19,13 @@ export type replyT = {
 };
 
 export type initT = {
+  currentUser: {
+    image: {
+      png: string;
+    };
+    username: string;
+  };
+
   comments: {
     id: number;
     content: string;
@@ -45,6 +52,12 @@ export type initT = {
   }[];
 };
 
+export type newCommentT = {
+  png: string;
+
+  username: string;
+};
+
 export type setInitT = {
   setInit: React.Dispatch<React.SetStateAction<initT>>;
 };
@@ -68,4 +81,10 @@ export type FullCommentT = {
   username: string;
   index: number;
   replyIndex?: number;
+};
+
+export type ButtonT = {
+  name: string;
+  logic: () => void;
+  backgroundColor: string; //must include bg-prefix
 };
