@@ -32,15 +32,14 @@ export default function ScoreButton({
   return (
     <div className="bg-[#F5F6FA] flex items-center h-[40px] w-[100px] justify-evenly rounded-[10px]">
       <div
-        data-testid="plusButton"
-        className="h-full flex items-center cursor-pointer"
+        className="h-full w-full grid place-items-center cursor-pointer"
         onClick={() => MoveScoreUp()}
       >
         <img src="/images/icon-plus.svg" alt="plus" />
       </div>
       <div className="text-mainPurple headingMedium ">{score}</div>
       <div
-        className="h-full flex items-center cursor-pointer"
+        className="h-full w-full grid place-items-center cursor-pointer"
         onClick={() => MoveScoreDown()}
       >
         <img src="/images/icon-minus.svg" alt="minus" />
@@ -48,4 +47,3 @@ export default function ScoreButton({
     </div>
   );
 }
-//403-262-5600 collean

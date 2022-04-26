@@ -14,7 +14,7 @@ export default function NewComment({ png, username }: newCommentT) {
       />
       <textarea
         className=" row-start-1 row-end-3 col-start-1 col-end-3 place-self-center border-[1px] border-[#E9EBF0] rounded-lg
-        w-full h-24 resize-none pt-3 pl-4 placeholder:text-greyishBlue  "
+        w-full h-24 resize-none pt-3 pl-4 placeholder:text-grayishBlue  "
         placeholder="Add a comment...."
       ></textarea>
       <div
@@ -25,6 +25,7 @@ export default function NewComment({ png, username }: newCommentT) {
           name="send"
           logic={() => console.log("wooo")}
           backgroundColor="bg-mainPurple"
+          width="w-[6.5rem]"
         />
       </div>
     </div>

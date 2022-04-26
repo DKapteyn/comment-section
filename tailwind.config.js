@@ -5,7 +5,9 @@ module.exports = {
       colors: {
         mainPurple: "#5357B6",
         hoverPurple: "#C5C6EF",
-        greyishBlue: "#67727E",
+        grayishBlue: "#67727E",
+        softRed: "#ED6368",
+        paleRed: "#FFB8BB",
       },
     },
   },

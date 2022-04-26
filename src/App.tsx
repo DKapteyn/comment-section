@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import { mainObjT, initT } from "./types";
 import FullComment from "./components/FullComment/FullComment";
-
 import NewComment from "./NewComment/NewComment";
 
 export const MainObjContext = createContext({} as mainObjT);
@@ -16,7 +15,7 @@ export default function App() {
       setInit(data);
     }
     initialStateFetch();
-  }, [init]);
+  }, []);
 
   return (
     <div>
@@ -26,8 +25,9 @@ export default function App() {
             {init.comments &&
               init.comments.map((response, index) => {
                 return (
-                  <div key={index}>
+                  <div key={response.content}>
                     <FullComment
+                      currentUser={init.currentUser.username}
                       username={response.user.username}
                       png={response.user.image.png}
                       createdAt={response.createdAt}
@@ -38,8 +38,9 @@ export default function App() {
                     {response.replies &&
                       response.replies.map((reply, replyIndex) => {
                         return (
-                          <div key={replyIndex}>
+                          <div key={reply.content}>
                             <FullComment
+                              currentUser={init.currentUser.username}
                               username={reply.user.username}
                               png={reply.user.image.png}
                               createdAt={reply.createdAt}
@@ -51,6 +52,7 @@ export default function App() {
                           </div>
                         );
                       })}
+                    {console.log(init)}
                   </div>
                 );
               })}

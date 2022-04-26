@@ -1,3 +1,5 @@
+import deleteButton from "./DeleteButton/DeleteButton";
+
 export type ScoreButtonT = {
   score: number;
   index: number;
@@ -71,9 +73,11 @@ export type userInfoT = {
   png: string;
   createdAt: string;
   username: string;
+  currentUser: string;
 };
 
 export type FullCommentT = {
+  currentUser: string;
   content: string;
   createdAt: string;
   score: number;
@@ -87,4 +91,17 @@ export type ButtonT = {
   name: string;
   logic: () => void;
   backgroundColor: string; //must include bg-prefix
+  width: string;
+};
+
+export type deleteButtonT = {
+  index: number;
+  replyIndex?: number;
+};
+
+export type modalT = {
+  setModalState: React.Dispatch<React.SetStateAction<boolean>>;
+  modalState: boolean;
+  index: number;
+  replyIndex?: number;
 };
