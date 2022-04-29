@@ -34,10 +34,13 @@ export default function ScoreButton({
       <div
         className="h-full w-full grid place-items-center cursor-pointer"
         onClick={() => MoveScoreUp()}
+        data-testid="plus"
       >
         <img src="/images/icon-plus.svg" alt="plus" />
       </div>
-      <div className="text-mainPurple headingMedium ">{score}</div>
+      <div data-testid="score" className="text-mainPurple headingMedium ">
+        {score}
+      </div>
       <div
         className="h-full w-full grid place-items-center cursor-pointer"
         onClick={() => MoveScoreDown()}

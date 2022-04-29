@@ -1,12 +1,18 @@
 import ScoreButton from "./ScoreButton";
-import { fireEvent, render, screen } from "@testing-library/react";
+import {
+  fireEvent,
+  getByTestId,
+  render,
+  cleanup,
+} from "@testing-library/react";
 import "@testing-library/jest-dom";
+import App, { MainObjContext } from "../../App";
+
+afterEach(cleanup);
 
 test("click plus", () => {
-  render(<ScoreButton />);
-  const plus = screen.getByTestId("plusButton");
-  const score = screen.getByText("score");
-  console.log(score);
-  fireEvent.click(plus);
-  expect(score).toEqual();
+  const { getByTestId } = render(<ScoreButton score={12} index={1} />);
+
+  fireEvent.click(getByTestId("plus"));
+  expect(getByTestId("score").textContent).toEqual(13);
 });

@@ -1,6 +1,11 @@
-export default function EditButton() {
+import { editT } from "../types";
+
+export default function EditButton({ editText, setEditText }: editT) {
   return (
-    <div className="group flex gap-2 items-center  cursor-pointer">
+    <div
+      onClick={() => setEditText(!editText)}
+      className="group flex gap-2 items-center  cursor-pointer"
+    >
       <img
         className="group-hover:opacity-40"
         src="/images/icon-edit.svg"

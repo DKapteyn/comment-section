@@ -25,7 +25,7 @@ export default function App() {
             {init.comments &&
               init.comments.map((response, index) => {
                 return (
-                  <div key={response.content}>
+                  <div key={response.id}>
                     <FullComment
                       currentUser={init.currentUser.username}
                       username={response.user.username}
@@ -52,7 +52,6 @@ export default function App() {
                           </div>
                         );
                       })}
-                    {console.log(init)}
                   </div>
                 );
               })}
