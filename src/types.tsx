@@ -13,9 +13,11 @@ export type responseT = {
 };
 
 export type replyT = {
-  content: string;
-  id: string;
-  score: number;
+  setReply: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type replyCommentT = {
+  index: number;
 };
 
 export type initT = {
@@ -54,8 +56,11 @@ export type initT = {
 
 export type newCommentT = {
   png: string;
-
+  index?: number;
   username: string;
+  reply: boolean;
+  replyIndex?: number;
+  setReply?: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type setInitT = {
@@ -112,4 +117,6 @@ export type editT = {
 export type textT = {
   text: string;
   setNewText: React.Dispatch<React.SetStateAction<string>>;
+  placeholder?: string;
+  newText: string;
 };

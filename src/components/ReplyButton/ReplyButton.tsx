@@ -1,6 +1,11 @@
-export default function ReplyButton() {
+import { replyT } from "../../types";
+
+export default function ReplyButton({ setReply }: replyT) {
   return (
-    <div className="flex items-center gap-2 cursor-pointer group">
+    <div
+      onClick={() => setReply(true)}
+      className="flex items-center gap-2 cursor-pointer group"
+    >
       <img
         className="group-hover:opacity-30"
         src="/images/icon-reply.svg"

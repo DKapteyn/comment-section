@@ -1,22 +1,30 @@
-import { useContext } from "react";
-
+import { useContext, useState } from "react";
+import Text from "../Text/Text";
 import { MainObjContext } from "../App";
 import Button from "../Button/Button";
 import { newCommentT } from "../types";
 
-export default function NewComment({ png, username }: newCommentT) {
+export default function NewComment({
+  png,
+  username,
+  reply,
+  index,
+  setReply,
+  replyIndex,
+}: newCommentT) {
   const { init, setInit } = useContext(MainObjContext);
+  const [newText, setNewText] = useState("");
 
-  let thisthing = {
+  let newThing = {
     id: Date.now(),
-    content: "say what?",
+    content: newText,
     createdAt: "Today",
     score: 0,
     user: {
       image: {
-        png: "./images/avatars/image-juliusomo.png",
+        png: init.currentUser.image.png,
       },
-      username: "juliusomo",
+      username: init.currentUser.username,
     },
     replies: [],
   };
@@ -31,27 +39,67 @@ export default function NewComment({ png, username }: newCommentT) {
         src={png}
         alt="user avatar"
       />
-      <textarea
-        className=" row-start-1 row-end-3 col-start-1 col-end-3 place-self-center border-[1px] border-[#E9EBF0] rounded-lg
-w-full h-24 resize-none pt-3 pl-4 placeholder:text-grayishBlue  "
-        placeholder="Add a comment...."
-      ></textarea>
+
+      <div className=" row-start-1 row-end-3 col-start-1 col-end-3 place-self-center w-full ">
+        <Text
+          placeholder="Add a comment...."
+          text=""
+          setNewText={setNewText}
+          newText={newText}
+        />
+      </div>
+
       <div
         className="row-start-3 row-end-3 col-start-2 col-end-2 self-end
        justify-self-end "
       >
-        <Button
-          name="send"
-          logic={() => {
-            let thisInit = { ...init };
-            thisInit.comments.push({
-              ...thisthing,
-            });
+        {reply && replyIndex !== undefined ? (
+          index !== undefined &&
+          replyIndex !== undefined &&
+          setReply && (
+            <Button
+              name="reply"
+              logic={() => {
+                let thisInit = { ...init };
+                thisInit.comments[index].replies.splice(replyIndex + 1, 0, {
+                  ...newThing,
+                });
 
-            setInit(thisInit);
-            console.log(init);
-          }}
-        />
+                setInit(thisInit);
+                setReply(false);
+              }}
+            />
+          )
+        ) : reply ? (
+          index !== undefined &&
+          setReply && (
+            <Button
+              name="reply"
+              logic={() => {
+                let thisInit = { ...init };
+                thisInit.comments[index].replies.unshift({
+                  ...newThing,
+                });
+
+                setInit(thisInit);
+                setReply(false);
+              }}
+            />
+          )
+        ) : (
+          <Button
+            name="send"
+            logic={() => {
+              let thisInit = { ...init };
+              thisInit.comments.push({
+                ...newThing,
+              });
+
+              setInit(thisInit);
+              setNewText("");
+            }}
+          />
+        )}
       </div>
     </div>
   );

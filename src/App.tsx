@@ -38,7 +38,7 @@ export default function App() {
                     {response.replies &&
                       response.replies.map((reply, replyIndex) => {
                         return (
-                          <div key={reply.content}>
+                          <div key={reply.id}>
                             <FullComment
                               currentUser={init.currentUser.username}
                               username={reply.user.username}
@@ -58,7 +58,11 @@ export default function App() {
           </div>
         </div>
         {init.currentUser && (
-          <NewComment png={init.currentUser.image.png} username="fred" />
+          <NewComment
+            png={init.currentUser.image.png}
+            username={init.currentUser.username}
+            reply={false}
+          />
         )}
       </MainObjContext.Provider>
     </div>
