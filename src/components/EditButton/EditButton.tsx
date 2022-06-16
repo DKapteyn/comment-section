@@ -1,4 +1,4 @@
-import { editT } from "../types";
+import { editT } from "../../types";
 
 export default function EditButton({ editText, setEditText }: editT) {
   return (

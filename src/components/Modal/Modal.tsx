@@ -1,6 +1,6 @@
 import Button from "../Button/Button";
-import { modalT } from "../types";
-import { MainObjContext } from "../App";
+import { modalT } from "../../types";
+import { MainContext } from "../../mainContext";
 import { useContext } from "react";
 
 export default function Modal({
@@ -9,7 +9,7 @@ export default function Modal({
   setModalState,
   modalState,
 }: modalT) {
-  const { init, setInit } = useContext(MainObjContext);
+  const { init, setInit } = useContext(MainContext);
 
   function deleteComment() {
     let deleteInit = { ...init };

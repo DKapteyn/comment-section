@@ -1,4 +1,4 @@
-import { ButtonT } from "../types";
+import { ButtonT } from "../../types";
 
 export default function Button({
   name,

@@ -1,4 +1,4 @@
-import { deleteButtonT } from "../types";
+import { deleteButtonT } from "../../types";
 
 import { useState } from "react";
 import Modal from "../Modal/Modal";

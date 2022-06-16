@@ -2,6 +2,8 @@ export type ScoreButtonT = {
   score: number;
   index: number;
   replyIndex?: number;
+  currentUser: string;
+  username: string;
 };
 
 export type responseT = {
@@ -59,6 +61,7 @@ export type newCommentT = {
   index?: number;
   username: string;
   reply: boolean;
+  repliedTo?: string;
   replyIndex?: number;
   setReply?: React.Dispatch<React.SetStateAction<boolean>>;
 };
@@ -115,7 +118,6 @@ export type editT = {
 };
 
 export type textT = {
-  text: string;
   setNewText: React.Dispatch<React.SetStateAction<string>>;
   placeholder?: string;
   newText: string;

@@ -1,12 +1,7 @@
-import { textT } from "../types";
+import { textT } from "../../types";
 
 //setNewText is a placeholder for any state used to store text data
-export default function Text({
-  text,
-  setNewText,
-  placeholder,
-  newText,
-}: textT) {
+export default function Text({ setNewText, placeholder, newText }: textT) {
   return (
     <textarea
       className="border-[1px] border-[#E9EBF0] rounded-lg

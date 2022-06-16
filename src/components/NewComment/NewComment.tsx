@@ -1,8 +1,8 @@
 import { useContext, useState } from "react";
 import Text from "../Text/Text";
-import { MainObjContext } from "../App";
+import { MainContext } from "../../mainContext";
 import Button from "../Button/Button";
-import { newCommentT } from "../types";
+import { newCommentT } from "../../types";
 
 export default function NewComment({
   png,
@@ -11,20 +11,29 @@ export default function NewComment({
   index,
   setReply,
   replyIndex,
+  repliedTo,
 }: newCommentT) {
-  const { init, setInit } = useContext(MainObjContext);
-  const [newText, setNewText] = useState("");
+  //storage for main object using Context API
+  const { init, setInit } = useContext(MainContext);
+  //storage of name being replied to
 
-  let newThing = {
+  //only adds @reply to reply NewComment Components
+  let replyText: string;
+  repliedTo === undefined ? (replyText = "") : (replyText = `@${repliedTo}`);
+
+  //controls the text content in the textbox
+  const [newText, setNewText] = useState(`${replyText}`);
+
+  let newCommentObject = {
     id: Date.now(),
     content: newText,
     createdAt: "Today",
     score: 0,
     user: {
       image: {
-        png: init.currentUser.image.png,
+        png,
       },
-      username: init.currentUser.username,
+      username,
     },
     replies: [],
   };
@@ -32,7 +41,7 @@ export default function NewComment({
   return (
     <div
       className="grid grid-cols-2 grid-rows-3 bg-white h-48  
-    rounded-lg m-4 p-4"
+    rounded-lg m-4 p-4 "
     >
       <img
         className="h-8 w-8 row-start-3 row-end-3 col-span-1 self-end mb-2 "
@@ -43,12 +52,13 @@ export default function NewComment({
       <div className=" row-start-1 row-end-3 col-start-1 col-end-3 place-self-center w-full ">
         <Text
           placeholder="Add a comment...."
-          text=""
           setNewText={setNewText}
           newText={newText}
         />
       </div>
-
+      {/*places NewComment whether responding to a reply,responding to original comment 
+         or making an original comment. also changes button name and logic
+          if a reply or original comment*/}
       <div
         className="row-start-3 row-end-3 col-start-2 col-end-2 self-end
        justify-self-end "
@@ -62,7 +72,7 @@ export default function NewComment({
               logic={() => {
                 let thisInit = { ...init };
                 thisInit.comments[index].replies.splice(replyIndex + 1, 0, {
-                  ...newThing,
+                  ...newCommentObject,
                 });
 
                 setInit(thisInit);
@@ -78,7 +88,7 @@ export default function NewComment({
               logic={() => {
                 let thisInit = { ...init };
                 thisInit.comments[index].replies.unshift({
-                  ...newThing,
+                  ...newCommentObject,
                 });
 
                 setInit(thisInit);
@@ -92,7 +102,7 @@ export default function NewComment({
             logic={() => {
               let thisInit = { ...init };
               thisInit.comments.push({
-                ...newThing,
+                ...newCommentObject,
               });
 
               setInit(thisInit);
