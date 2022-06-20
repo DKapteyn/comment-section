@@ -7,12 +7,11 @@ function MainContextProvider({ children }: any) {
   const [init, setInit] = useState<initT>({} as initT);
 
   useEffect(() => {
-    async function initialStateFetch() {
+    (async function initialStateFetch() {
       let response = await fetch("data.json");
       let data = await response.json();
       setInit(data);
-    }
-    initialStateFetch();
+    })();
   }, []);
 
   return (
