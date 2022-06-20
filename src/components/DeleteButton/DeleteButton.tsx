@@ -14,7 +14,7 @@ export default function DeleteButton({ index, replyIndex }: deleteButtonT) {
       >
         <img
           className="group-hover:opacity-40"
-          src="/images/icon-delete.svg"
+          src="./images/icon-delete.svg"
           alt="Garbage Can"
         />
         <h3 className="text-softRed  group-hover:text-paleRed bodyBold">

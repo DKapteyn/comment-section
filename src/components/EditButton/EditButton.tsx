@@ -8,7 +8,7 @@ export default function EditButton({ editText, setEditText }: editT) {
     >
       <img
         className="group-hover:opacity-40"
-        src="/images/icon-edit.svg"
+        src="./images/icon-edit.svg"
         alt="pencil"
       />
       <h3 className="text-mainPurple group-hover:text-hoverPurple bodyBold">
