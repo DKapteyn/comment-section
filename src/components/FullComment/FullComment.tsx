@@ -87,7 +87,11 @@ export default function FullComment({
           replyIndex={replyIndex}
           reply={true}
           username={currentUser}
-          repliedTo={init.comments[index].user.username}
+          repliedTo={
+            replyIndex === undefined
+              ? init.comments[index].user.username
+              : init.comments[index].replies[replyIndex].user.username
+          }
         />
       )}
     </div>
