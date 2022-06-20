@@ -15,8 +15,7 @@ export default function ScoreButton({
   //checks if score has been put down
   const [isScoreDown, setScoreDown] = useState(false);
 
-  
-//checks if score has been moved up or if currentUser is trying to change their own score. 
+  //checks if score has been moved up or if currentUser is trying to change their own score.
   function moveScoreUp(): void {
     if (isScoreUp === true || currentUser === username) {
       return;
@@ -28,7 +27,7 @@ export default function ScoreButton({
       setScoreUp(true);
     }
   }
-//changes score up 
+  //changes score up
   function scoreUp(): void {
     let newInit = { ...init };
     replyIndex !== undefined
@@ -36,7 +35,7 @@ export default function ScoreButton({
       : (newInit.comments[index].score = score + 1);
     setInit(newInit);
   }
-//checks if score has been moved up or if currentUser is trying to change their own score. 
+  //checks if score has been moved up or if currentUser is trying to change their own score.
   function moveScoreDown(): void {
     if (isScoreDown === true || currentUser === username) {
       return;
@@ -48,7 +47,7 @@ export default function ScoreButton({
       setScoreDown(true);
     }
   }
-//moves score down 
+  //moves score down
   function scoreDown(): void {
     let newInit = { ...init };
 
@@ -65,14 +64,14 @@ export default function ScoreButton({
         className="h-full w-full grid place-items-center cursor-pointer"
         onClick={() => moveScoreUp()}
       >
-        <img src="/images/icon-plus.svg" alt="plus" />
+        <img src="./images/icon-plus.svg" alt="plus" />
       </div>
       <div className="text-mainPurple headingMedium ">{score}</div>
       <div
         className="h-full w-full grid place-items-center cursor-pointer"
         onClick={() => moveScoreDown()}
       >
-        <img src="/images/icon-minus.svg" alt="minus" />
+        <img src="./images/icon-minus.svg" alt="minus" />
       </div>
     </div>
   );

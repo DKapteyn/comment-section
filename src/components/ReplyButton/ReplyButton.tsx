@@ -8,7 +8,7 @@ export default function ReplyButton({ setReply }: replyT) {
     >
       <img
         className="group-hover:opacity-30"
-        src="/images/icon-reply.svg"
+        src="./images/icon-reply.svg"
         alt="reply arrow"
       />
       <p className=" text-mainPurple  bodyBold group-hover:text-hoverPurple">
